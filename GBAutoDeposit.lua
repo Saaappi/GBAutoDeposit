@@ -20,6 +20,12 @@ SlashCmdList["GBAutoDeposit"] = function(message, editbox)
 		GBAutoDepositFrame:Hide()
     else
 		GBAutoDepositFrame:Show()
+		GBAutoDepositGoldBox:SetText(GBAutoDepositAmount)
+
+		GBAutoDepositFrameCloseButton:SetScript("OnClick", function(self)
+			self:GetParent():Hide()
+		end)
+
 		GBAutoDepositGoldBox:SetScript("OnEnter", function(self)
 			ShowTooltip(self, "The value to keep on hand after deposits.\nPlease enter a value between |cffFFFFFF1|r and |cffFFFFFF9999|r.\nThis value applies to all characters on the account.\n\n"
 				.. "|cffFFFFFFCurrent|r: " .. GetCoinTextureString(GBAutoDepositAmount))

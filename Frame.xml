@@ -41,6 +41,14 @@
 					<FontHeight val="9" />
 					<Color r="1" g="1" b="1" />
 				</FontString>
+				<FontString name="GBAutoDepositTitleText" inherits="GameFontNormal" font="Fonts\2002B.ttf" text="GBAutoDeposit">
+					<Size x="156" y="22" />
+					<Anchors>
+						<Anchor point="BOTTOM" relativeTo="GBAutoDepositFrame" relativePoint="TOP" x="0" y="0" />
+					</Anchors>
+					<FontHeight val="16" />
+					<Color r="0" g="1" b="1" />
+				</FontString>
 			</Layer>
 		</Layers>
 		<Frames>
@@ -60,6 +68,12 @@
 					</Shadow>
 				</FontString>
 			</EditBox>
+			<Button name="GBAutoDepositFrameCloseButton" inherits="UIPanelButtonTemplate" parent="GBAutoDepositFrame" text="X">
+				<Size x="28" y="28" />
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="GBAutoDepositFrame" relativePoint="TOPRIGHT" x="-10" y="-10" />
+				</Anchors>
+			</Button>
 		</Frames>
 	</Frame>
 </Ui>
