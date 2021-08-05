@@ -1,0 +1,65 @@
+<Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Frame.lua" />
+	<Frame name="GBAutoDepositFrame" inherits="BackdropTemplate" hidden="true">
+		<Size x="251" y="110" />
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER" x="0" y="150" />
+		</Anchors>
+		<KeyValues>
+			<KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" keyType="string" type="global" />
+		</KeyValues>
+		<TitleRegion name="GBAutoDepositTitleRegion" setAllPoints="true">
+			<Size>
+				<AbsDimension x="0" y="30" />
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" />
+				<Anchor point="TOPRIGHT" />
+			</Anchors>
+		</TitleRegion>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+			<TileSize val="32" />
+			<EdgeSize val="32" />
+		</Backdrop>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="GBAutoDepositValueText" parentKey="" inherits="GameFontNormal" font="Fonts\2002B.ttf" text="Gold Value">
+					<Size x="80" y="20" />
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="-2" y="20" />
+					</Anchors>
+					<FontHeight val="12" />
+				</FontString>
+				<FontString name="GBAutoDepositCRText" inherits="GameFontNormal" font="Fonts\2002.ttf" text="Crafted by Sire Lightsky |T166311:0|t">
+					<Size x="150" y="19" />
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="0" y="-30" />
+					</Anchors>
+					<FontHeight val="9" />
+					<Color r="1" g="1" b="1" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="GBAutoDepositGoldBox" inherits="InputBoxTemplate" letters="4" numeric="true">
+				<Size x="100" y="32" />
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="0" y="0" />
+				</Anchors>
+				<FontString inherits="ChatFontNormal" font="Fonts\ARIALN.TTF">
+					<FontHeight val="14" />
+					<Color r="1" g="1" b="1" />
+					<Shadow>
+						<Offset>
+							<AbsDimension x="1" y="-1" />
+						</Offset>
+						<Color r="0" g="0" b="0" />
+					</Shadow>
+				</FontString>
+			</EditBox>
+		</Frames>
+	</Frame>
+</Ui>

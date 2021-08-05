@@ -6,4 +6,5 @@
 ## Title: |cff00CCFFGBAutoDeposit|r
 ## Version: 0.0.0
 
+Frame.xml
 GBAutoDeposit.lua
