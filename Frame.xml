@@ -33,7 +33,7 @@
 					</Anchors>
 					<FontHeight val="12" />
 				</FontString>
-				<FontString name="GBAutoDepositCRText" inherits="GameFontNormal" font="Fonts\2002.ttf" text="Crafted by Sire Lightsky |T166311:0|t">
+				<FontString name="GBAutoDepositCRText" inherits="GameFontNormal" font="Fonts\2002.ttf" text="Crafted by Tinker Lightsky |T166311:0|t">
 					<Size x="150" y="19" />
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="0" y="-30" />
@@ -57,15 +57,8 @@
 				<Anchors>
 					<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="0" y="0" />
 				</Anchors>
-				<FontString inherits="ChatFontNormal" font="Fonts\ARIALN.TTF">
+				<FontString inherits="ChatFontNormal">
 					<FontHeight val="14" />
-					<Color r="1" g="1" b="1" />
-					<Shadow>
-						<Offset>
-							<AbsDimension x="1" y="-1" />
-						</Offset>
-						<Color r="0" g="0" b="0" />
-					</Shadow>
 				</FontString>
 			</EditBox>
 			<Button name="GBAutoDepositFrameCloseButton" inherits="UIPanelButtonTemplate" parent="GBAutoDepositFrame" text="X">

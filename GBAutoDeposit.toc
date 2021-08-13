@@ -1,10 +1,10 @@
 ## Author: Sappy (Alex)
 ## Interface: 90100
 ## Name: |cff00CCFFGBAutoDeposit|r
-## Notes: Automatically deposits a fixed amount of gold into the guild bank whenever the player opens the frame.
+## Notes: Automatically deposits the desired amount of gold into the guild bank whenever the player opens the frame.
 ## SavedVariables: GBAutoDepositAmount
 ## Title: |cff00CCFFGBAutoDeposit|r
-## Version: 0.0.0
+## Version: 1.0.0
 
 Frame.xml
 GBAutoDeposit.lua
