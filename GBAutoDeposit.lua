@@ -105,7 +105,7 @@ e:SetScript("OnEvent", function(self, event, ...)
 							StaticPopup1MoneyInputFrameGold:SetText(gold)
 							StaticPopup1MoneyInputFrameSilver:SetText(silver)
 							StaticPopup1MoneyInputFrameCopper:SetText(copper)
-							--StaticPopup1Button1:Click()
+							StaticPopup1Button1:Click()
 						end)
 					end)
 				end
