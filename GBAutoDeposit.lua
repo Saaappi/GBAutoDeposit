@@ -20,7 +20,7 @@ SlashCmdList["GBAutoDeposit"] = function(message, editbox)
 		GBAutoDepositFrame:Hide()
     else
 		GBAutoDepositFrame:Show()
-		GBAutoDepositGoldBox:SetText(GBAutoDepositAmount)
+		GBAutoDepositGoldBox:SetText(GBAutoDepositOptions.Amount)
 
 		GBAutoDepositFrameCloseButton:SetScript("OnClick", function(self)
 			self:GetParent():Hide()
@@ -28,7 +28,7 @@ SlashCmdList["GBAutoDeposit"] = function(message, editbox)
 
 		GBAutoDepositGoldBox:SetScript("OnEnter", function(self)
 			ShowTooltip(self, "The value to keep on hand after deposits.\nPlease enter a value between |cffFFFFFF1|r and |cffFFFFFF9999|r.\nThis value applies to all characters on the account.\n\n"
-				.. "|cffFFFFFFCurrent|r: " .. GetCoinTextureString(GBAutoDepositAmount))
+				.. "|cffFFFFFFCurrent|r: " .. GetCoinTextureString(GBAutoDepositOptions.Amount))
 		end)
 
 		GBAutoDepositGoldBox:SetScript("OnLeave", function(self)
@@ -36,9 +36,29 @@ SlashCmdList["GBAutoDeposit"] = function(message, editbox)
 		end)
 
 		GBAutoDepositGoldBox:SetScript("OnEnterPressed", function(self)
-			GBAutoDepositAmount = (self:GetText()) * 10000
+			GBAutoDepositOptions.Amount = (self:GetText()) * 10000
 			GBAutoDepositGoldBox:SetText("")
 			GBAutoDepositFrame:Hide()
+		end)
+		
+		if GBAutoDepositOptions.State then
+			GBAutoDepositStateCB:SetChecked(true)
+		else
+			GBAutoDepositStateCB:SetChecked(false)
+		end
+		
+		GBAutoDepositStateCB:SetScript("OnEnter", function(self)
+			ShowTooltip(self, "Check this box to enable the addon's functionality.\nUncheck it to disable.")
+		end)
+		GBAutoDepositStateCB:SetScript("OnLeave", function(self)
+			HideTooltip(self)
+		end)
+		GBAutoDepositStateCB:SetScript("OnClick", function(self)
+			if self:GetChecked() then
+				GBAutoDepositOptions.State = true
+			else
+				GBAutoDepositOptions.State = false
+			end
 		end)
 	end
 end
@@ -46,38 +66,49 @@ end
 e:RegisterEvent("ADDON_LOADED")
 e:RegisterEvent("GUILDBANKFRAME_OPENED")
 e:SetScript("OnEvent", function(self, event, ...)
-	if (event == "ADDON_LOADED") then
-		if (GBAutoDepositAmount == nil) then
-			-- If the value hasn't been set, then default to 50 gold.
-			GBAutoDepositAmount = 500000
+	if event == "ADDON_LOADED" then
+		if GBAutoDepositOptions == nil then
+			GBAutoDepositOptions = {}
+		end
+		
+		if GBAutoDepositOptions.Amount == nil then
+			-- Set the amount to 0 if the
+			-- option is already nil.
+			GBAutoDepositOptions.Amount = 0
 		end
 	end
-	if (event == "GUILDBANKFRAME_OPENED") then
+	if event == "GUILDBANKFRAME_OPENED" then
 		local money = GetMoney()
-		if (money > GBAutoDepositAmount) then
-			-- This is the non-configurable version of the addon. Let's deposit everything except 50 gold.
-			money = money-GBAutoDepositAmount
+		if (money > GBAutoDepositOptions.Amount) then
+			money = money-GBAutoDepositOptions.Amount
 			
-			-- Let's get the length of the string and split it. Copper is the last 2 digits. Silver is the next 2. Gold is the rest.
+			-- Let's get the length of the string and split it.
+			-- Copper is the last 2 digits. Silver is the next 2.
+			-- Gold is the rest.
 			local length = string.len(money)
 			gold = string.sub(money, 0, length-4)
 			silver = string.sub(money, length-3, length-2)
 			copper = string.sub(money, length-1, length-0)
 			
-			-- Click the Deposit button in the Guild Bank UI.
-			GuildBankFrameDepositButton:Click()
-			
-			if (StaticPopup1:IsVisible()) then
-				-- Let's make sure the popup appeared before we try to fill in the fields.
-				-- Let's also place it on a timer in case Blizzard gets mad about the hastiness of the automation.
-				C_Timer.After(0, function()
-					C_Timer.After(1, function()
-						StaticPopup1MoneyInputFrameGold:SetText(gold)
-						StaticPopup1MoneyInputFrameSilver:SetText(silver)
-						StaticPopup1MoneyInputFrameCopper:SetText(copper)
-						StaticPopup1Button1:Click()
+			-- Click the Deposit button in the
+			-- Guild Bank UI.
+			if GBAutoDepositOptions.State then
+				GuildBankFrame.DepositButton:Click("LeftButton")
+				
+				if (StaticPopup1:IsVisible()) then
+					-- Let's make sure the popup appeared before we
+					-- try to fill in the fields. Let's also place it
+					-- on a timer in case Blizzard gets mad about
+					-- the hastiness of the automation.
+					C_Timer.After(0, function()
+						C_Timer.After(1, function()
+							StaticPopup1MoneyInputFrameGold:SetText(gold)
+							StaticPopup1MoneyInputFrameSilver:SetText(silver)
+							StaticPopup1MoneyInputFrameCopper:SetText(copper)
+							--StaticPopup1Button1:Click()
+						end)
 					end)
-				end)
+				end
 			end
 		end
 	end

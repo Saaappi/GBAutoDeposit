@@ -61,6 +61,11 @@
 					<FontHeight val="14" />
 				</FontString>
 			</EditBox>
+			<CheckButton name="GBAutoDepositStateCB" inherits="UICheckButtonTemplate" text="CheckButton1">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="15" y="-15" />
+				</Anchors>
+			</CheckButton>
 			<Button name="GBAutoDepositFrameCloseButton" inherits="UIPanelButtonTemplate" parent="GBAutoDepositFrame" text="X">
 				<Size x="28" y="28" />
 				<Anchors>
