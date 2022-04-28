@@ -4,7 +4,7 @@
 ## Notes: Automatically deposits gold into the guild vault and leaves a specified amount on hand.
 ## SavedVariables: GBAutoDepositOptions
 ## Title: |cff00CCFFGBAutoDeposit|r
-## Version: 1.0.0
+## Version: 1.0.1
 
 Frame.xml
 GBAutoDeposit.lua
