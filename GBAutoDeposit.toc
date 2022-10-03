@@ -1,10 +1,10 @@
 ## Author: Sappy (Alex)
-## Interface: 90200
+## Interface: 90207
 ## Name: |cff00CCFFGBAutoDeposit|r
 ## Notes: Automatically deposits gold into the guild vault and leaves a specified amount on hand.
 ## SavedVariables: GBAutoDepositOptions
 ## Title: |cff00CCFFGBAutoDeposit|r
-## Version: 1.0.1
+## Version: 1.0.3
 
 Frame.xml
 GBAutoDeposit.lua
