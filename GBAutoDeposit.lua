@@ -27,9 +27,7 @@ SlashCmdList["GBAutoDeposit"] = function(message, editbox)
 		end)
 
 		GBAutoDepositGoldBox:SetScript("OnEscapePressed", function(self) 
-			
 				GBAutoDepositFrame:Hide()
-			
 		end)
 
 		GBAutoDepositGoldBox:SetScript("OnEnter", function(self)
