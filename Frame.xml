@@ -52,7 +52,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<EditBox name="GBAutoDepositGoldBox" inherits="InputBoxTemplate" letters="5" numeric="true">
+			<EditBox name="GBAutoDepositGoldBox" inherits="InputBoxTemplate" letters="7" numeric="true">
 				<Size x="100" y="32" />
 				<Anchors>
 					<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="0" y="0" />
