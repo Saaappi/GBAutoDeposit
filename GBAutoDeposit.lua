@@ -85,7 +85,6 @@ e:SetScript("OnEvent", function(self, event, ...)
 		local money = GetMoney()
 		if (money > GBAutoDepositOptions.Amount) then
 			money = money-GBAutoDepositOptions.Amount
-			
 			-- Let's get the length of the string and split it.
 			-- Copper is the last 2 digits. Silver is the next 2.
 			-- Gold is the rest.
@@ -93,12 +92,10 @@ e:SetScript("OnEvent", function(self, event, ...)
 			gold = string.sub(money, 0, length-4)
 			silver = string.sub(money, length-3, length-2)
 			copper = string.sub(money, length-1, length-0)
-			
 			-- Click the Deposit button in the
 			-- Guild Bank UI.
 			if GBAutoDepositOptions.State then
 				GuildBankFrame.DepositButton:Click("LeftButton")
-				
 				if (StaticPopup1:IsVisible()) then
 					-- Let's make sure the popup appeared before we
 					-- try to fill in the fields. Let's also place it
@@ -110,6 +107,7 @@ e:SetScript("OnEvent", function(self, event, ...)
 							StaticPopup1MoneyInputFrameSilver:SetText(silver)
 							StaticPopup1MoneyInputFrameCopper:SetText(copper)
 							StaticPopup1Button1:Click()
+							print("Money deposited: " .. GetCoinTextureString(money))
 						end)
 					end)
 				end
