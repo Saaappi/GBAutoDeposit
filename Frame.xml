@@ -1,10 +1,4 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="Frame.lua" />
-	<Scripts>
-  		<OnLoad>
-    		tinsert(UISpecialFrames, self:GetName())
-  		</OnLoad>
-	</Scripts>
 	<Frame name="GBAutoDepositFrame" inherits="BackdropTemplate" hidden="true">
 		<Size x="251" y="110" />
 		<Anchors>
@@ -78,5 +72,10 @@
 				</Anchors>
 			</Button>
 		</Frames>
+		<Scripts>
+			<OnLoad>
+				tinsert(UISpecialFrames, self:GetName())
+			</OnLoad>
+		</Scripts>
 	</Frame>
 </Ui>
