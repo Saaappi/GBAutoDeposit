@@ -1,5 +1,5 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.blizzard.com/wow/ui/">
-	<Frame name="GBAutoDepositFrame" inherits="BackdropTemplate" hidden="true">
+	<Frame name="GBAutoDepositFrame" inherits="BasicFrameTemplateWithInset" hidden="true" parent="UIParent" toplevel="true" frameStrata="HIGH">
 		<Size x="251" y="110" />
 		<Anchors>
 			<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER" x="0" y="150" />
@@ -25,14 +25,14 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="GBAutoDepositValueText" parentKey="" inherits="GameFontNormal" font="Fonts\2002B.ttf" text="Gold Value">
+				<FontString name="GBAutoDepositValueText" parentKey="" inherits="GameFontNormal" font="Fonts\2002B.ttf" parent="GBAutoDepositFrame" text="Gold Value">
 					<Size x="80" y="20" />
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="-2" y="20" />
 					</Anchors>
 					<FontHeight val="12" />
 				</FontString>
-				<FontString name="GBAutoDepositCRText" inherits="GameFontNormal" font="Fonts\2002.ttf" text="Crafted by Tinker Lightsky |T166311:0|t">
+				<FontString name="GBAutoDepositCRText" inherits="GameFontNormal" font="Fonts\2002.ttf" parent="GBAutoDepositFrame" text="Crafted by Tinker Lightsky |T166311:0|t">
 					<Size x="150" y="19" />
 					<Anchors>
 						<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="0" y="-30" />
@@ -40,7 +40,7 @@
 					<FontHeight val="9" />
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString name="GBAutoDepositTitleText" inherits="GameFontNormal" font="Fonts\2002B.ttf" text="GBAutoDeposit">
+				<FontString name="GBAutoDepositTitleText" inherits="GameFontNormal" font="Fonts\2002B.ttf" parent="GBAutoDepositFrame" text="GBAutoDeposit">
 					<Size x="156" y="22" />
 					<Anchors>
 						<Anchor point="BOTTOM" relativeTo="GBAutoDepositFrame" relativePoint="TOP" x="0" y="0" />
@@ -51,7 +51,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<EditBox name="GBAutoDepositGoldBox" inherits="InputBoxTemplate" letters="7" numeric="true">
+			<EditBox name="GBAutoDepositGoldBox" inherits="InputBoxTemplate" parent="GBAutoDepositFrame" letters="7" numeric="true">
 				<Size x="100" y="32" />
 				<Anchors>
 					<Anchor point="CENTER" relativeTo="GBAutoDepositFrame" relativePoint="CENTER" x="0" y="0" />
@@ -60,17 +60,11 @@
 					<FontHeight val="14" />
 				</FontString>
 			</EditBox>
-			<CheckButton name="GBAutoDepositStateCB" inherits="UICheckButtonTemplate" text="CheckButton1">
+			<CheckButton name="GBAutoDepositStateCB" inherits="UICheckButtonTemplate" parent="GBAutoDepositFrame" text="CheckButton1">
 				<Anchors>
-					<Anchor point="TOPLEFT" x="15" y="-15" />
+					<Anchor point="TOPLEFT" x="13" y="-25" />
 				</Anchors>
 			</CheckButton>
-			<Button name="GBAutoDepositFrameCloseButton" inherits="UIPanelButtonTemplate" parent="GBAutoDepositFrame" text="X">
-				<Size x="28" y="28" />
-				<Anchors>
-					<Anchor point="TOPRIGHT" relativeTo="GBAutoDepositFrame" relativePoint="TOPRIGHT" x="-10" y="-10" />
-				</Anchors>
-			</Button>
 		</Frames>
 		<Scripts>
 			<OnLoad>

@@ -22,10 +22,6 @@ SlashCmdList["GBAutoDeposit"] = function(message, editbox)
 		GBAutoDepositFrame:Show()
 		GBAutoDepositGoldBox:SetText(GBAutoDepositOptions.Amount/10000)
 
-		GBAutoDepositFrameCloseButton:SetScript("OnClick", function(self)
-			self:GetParent():Hide()
-		end)
-
 		GBAutoDepositGoldBox:SetScript("OnEscapePressed", function(self) 
 				GBAutoDepositFrame:Hide()
 		end)
