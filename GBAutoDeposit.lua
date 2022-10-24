@@ -27,7 +27,7 @@ SlashCmdList["GBAutoDeposit"] = function(message, editbox)
 		end)
 
 		GBAutoDepositGoldBox:SetScript("OnEnter", function(self)
-			ShowTooltip(self, "The value to keep on hand after deposits.\nPlease enter a value between |cffFFFFFF1|r and |cffFFFFFF9999999|r.\nThis value applies to all characters on the account.\n\n"
+			ShowTooltip(self, "The gold value to keep on hand after deposits.\nPlease enter a value between |cffFFFFFF1|r and |cffFFFFFF9999999|r.\nThis value applies to all characters on the account.\n\n"
 				.. "|cffFFFFFFCurrent|r: " .. GetCoinTextureString(GBAutoDepositOptions.Amount))
 		end)
 
