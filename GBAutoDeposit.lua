@@ -6,7 +6,7 @@ GBAutoDeposit = LibStub("AceAddon-3.0"):NewAddon("GBAutoDeposit", "AceConsole-3.
 
 local options = {
 	name = addonName,
-	handler = HelpMePlay,
+	handler = GBAutoDeposit,
 	type = "group",
 	args = {
 		enable = {
@@ -55,6 +55,8 @@ end
 function GBAutoDeposit:SlashCommandHandler(cmd)
 	if not cmd or cmd == "" then
 		Settings.OpenToCategory(addonName)
+	elseif cmd == "amount" then
+		print("Current Amount: " .. GetCoinTextureString(GBAutoDepositOptions.Amount))
 	end
 end
 
