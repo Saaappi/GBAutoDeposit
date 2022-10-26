@@ -52,63 +52,10 @@ function GBAutoDeposit:OnInitialize()
 	end
 end
 
-local function ShowTooltip(self, text)
-	GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-	GameTooltip:SetText(text)
-	GameTooltip:Show()
-end
-
-local function HideTooltip(self)
-	if GameTooltip:GetOwner() == self then
-		GameTooltip:Hide()
-	end
-end
-
-SlashCmdList["GBAutoDeposit"] = function(message, editbox)
-	if (GBAutoDepositFrame:IsVisible()) then
-		GBAutoDepositFrame:Hide()
-    else
-		GBAutoDepositFrame:Show()
-		GBAutoDepositGoldBox:SetText(GBAutoDepositOptions.Amount/10000)
-
-		GBAutoDepositGoldBox:SetScript("OnEscapePressed", function(self) 
-				GBAutoDepositFrame:Hide()
-		end)
-
-		GBAutoDepositGoldBox:SetScript("OnEnter", function(self)
-			ShowTooltip(self, "The gold value to keep on hand after deposits.\nPlease enter a value between |cffFFFFFF1|r and |cffFFFFFF9999999|r.\nThis value applies to all characters on the account.\n\n"
-				.. "|cffFFFFFFCurrent|r: " .. GetCoinTextureString(GBAutoDepositOptions.Amount))
-		end)
-
-		GBAutoDepositGoldBox:SetScript("OnLeave", function(self)
-			HideTooltip(self)
-		end)
-
-		GBAutoDepositGoldBox:SetScript("OnEnterPressed", function(self)
-			GBAutoDepositOptions.Amount = (self:GetText()) * 10000
-			GBAutoDepositGoldBox:SetText("")
-			GBAutoDepositFrame:Hide()
-		end)
-		
-		if GBAutoDepositOptions.State then
-			GBAutoDepositStateCB:SetChecked(true)
-		else
-			GBAutoDepositStateCB:SetChecked(false)
-		end
-		
-		GBAutoDepositStateCB:SetScript("OnEnter", function(self)
-			ShowTooltip(self, "Check this box to enable the addon's functionality.\nUncheck it to disable.")
-		end)
-		GBAutoDepositStateCB:SetScript("OnLeave", function(self)
-			HideTooltip(self)
-		end)
-		GBAutoDepositStateCB:SetScript("OnClick", function(self)
-			if self:GetChecked() then
-				GBAutoDepositOptions.State = true
-			else
-				GBAutoDepositOptions.State = false
-			end
-		end)
+function GBAutoDeposit:SlashCommandHandler(cmd)
+	local cmd, arg1, arg2 = string.split(" ", cmd)
+	if not cmd or cmd == "" then
+		Settings.OpenToCategory(addonName)
 	end
 end
 
