@@ -4,7 +4,16 @@
 ## Notes: Automatically deposits gold into the guild vault and leaves a specified amount on hand.
 ## SavedVariables: GBAutoDepositOptions
 ## Title: |cff00CCFFGBAutoDeposit|r
-## Version: 1.0.4
+## Version: 1.0.5
 
-Frame.xml
+# Libraries
+Lib\LibStub\LibStub.lua
+Lib\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Lib\AceAddon-3.0\AceAddon-3.0.xml
+Lib\AceEvent-3.0\AceEvent-3.0.xml
+Lib\AceDB-3.0\AceDB-3.0.xml
+Lib\AceConsole-3.0\AceConsole-3.0.xml
+Lib\AceGUI-3.0\AceGUI-3.0.xml
+Lib\AceConfig-3.0\AceConfig-3.0.xml
+
 GBAutoDeposit.lua
