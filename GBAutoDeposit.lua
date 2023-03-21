@@ -1,6 +1,7 @@
 local addonName, addonTable = ...
 local e = CreateFrame("Frame")
 local gold, silver, copper
+local coloredDash = "|cffFFD100-|r "
 
 GBAutoDeposit = LibStub("AceAddon-3.0"):NewAddon("GBAutoDeposit", "AceConsole-3.0")
 
@@ -35,6 +36,17 @@ local options = {
 				end
 				return "Please enter a numeric value from 1 to 9,999,999 (commas should not be used)."
 			end,
+		},
+		changesHeader = {
+			name = "Changes",
+			order = 10,
+			type = "header",
+		},
+		updatedText = {
+			name = coloredDash .. "Updated the TOC to support Patch 10.0.7.",
+			order = 21,
+			type = "description",
+			fontSize = "medium",
 		},
 	},
 }
