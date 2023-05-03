@@ -43,7 +43,7 @@ local options = {
 			type = "header",
 		},
 		updatedText = {
-			name = coloredDash .. "Updated the TOC to support Patch 10.0.7.",
+			name = coloredDash .. "Updated the TOC to support Patch 10.1.",
 			order = 21,
 			type = "description",
 			fontSize = "medium",
