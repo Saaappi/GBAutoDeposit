@@ -1,11 +1,11 @@
 ## Author: LightskyGG
 ## Interface: 100100
-## Name: |cff00CCFFGBAutoDeposit|r
-## Notes: Automatically deposits gold into the guild vault and leaves a specified amount on hand.
-## SavedVariables: GBAutoDepositOptions
 ## Title: GBAutoDeposit
+## Notes: Version: 1.1.1
+## SavedVariables: GBAutoDepositOptions
 #
-## Version: 1.1.0
+## Version: 1.1.1
+## IconTexture: Interface\ICONS\inv_misc_coin_01
 
 # Libraries
 Lib\LibStub\LibStub.lua

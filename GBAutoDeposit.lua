@@ -43,7 +43,7 @@ local options = {
 			type = "header",
 		},
 		updatedText = {
-			name = coloredDash .. "Updated the TOC to support Patch 10.1.",
+			name = coloredDash .. "Added logic to withdraw money from the guild bank to get the player back to their desired amount.",
 			order = 21,
 			type = "description",
 			fontSize = "medium",
@@ -56,7 +56,6 @@ function GBAutoDeposit:OnInitialize()
 	self.mainOptions = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("GBAutoDeposit_Main", addonName)
 	self:RegisterChatCommand("gbad", "SlashCommandHandler")
 	
-	-- Default Options
 	if GBAutoDepositOptions == nil then
 		GBAutoDepositOptions = {}
 		GBAutoDepositOptions.Enabled = false
@@ -77,33 +76,42 @@ e:SetScript("OnEvent", function(self, event, ...)
 	if event == "PLAYER_INTERACTION_MANAGER_FRAME_SHOW" then
 		local type = ...
 		if type == 10 then
-			local money = GetMoney()
-			if (money > GBAutoDepositOptions.Amount) then
-				money = money-GBAutoDepositOptions.Amount
-				-- Let's get the length of the string and split it.
-				-- Copper is the last 2 digits. Silver is the next 2.
-				-- Gold is the rest.
-				local length = string.len(money)
-				gold = string.sub(money, 0, length-4)
-				silver = string.sub(money, length-3, length-2)
-				copper = string.sub(money, length-1, length-0)
-				-- Click the Deposit button in the
-				-- Guild Bank UI.
-				if GBAutoDepositOptions.Enabled then
+			if (GBAutoDepositOptions.Enabled) then
+				local money = GetMoney()
+				if (money > GBAutoDepositOptions.Amount) then
+					money = money-GBAutoDepositOptions.Amount
+					
+					local moneyToDeposit = string.len(money)
+					gold = string.sub(money, 0, moneyToDeposit-4)
+					silver = string.sub(money, moneyToDeposit-3, moneyToDeposit-2)
+					copper = string.sub(money, moneyToDeposit-1, moneyToDeposit-0)
+					
 					GuildBankFrame.DepositButton:Click("LeftButton")
 					if (StaticPopup1:IsVisible()) then
-						-- Let's make sure the popup appeared before we
-						-- try to fill in the fields. Let's also place it
-						-- on a timer in case Blizzard gets mad about
-						-- the hastiness of the automation.
-						C_Timer.After(0, function()
-							C_Timer.After(1, function()
-								StaticPopup1MoneyInputFrameGold:SetText(gold)
-								StaticPopup1MoneyInputFrameSilver:SetText(silver)
-								StaticPopup1MoneyInputFrameCopper:SetText(copper)
-								StaticPopup1Button1:Click()
-								print("Money deposited: " .. GetCoinTextureString(money))
-							end)
+						C_Timer.After(0.5, function()
+							StaticPopup1MoneyInputFrameGold:SetText(gold)
+							StaticPopup1MoneyInputFrameSilver:SetText(silver)
+							StaticPopup1MoneyInputFrameCopper:SetText(copper)
+							StaticPopup1Button1:Click()
+							print("Money deposited: " .. GetCoinTextureString(money))
+						end)
+					end
+				elseif (money < GBAutoDepositOptions.Amount) then
+					money = GBAutoDepositOptions.Amount-money
+					
+					local moneyToWithdraw = string.len(money)
+					gold = string.sub(money, 0, moneyToWithdraw-4)
+					silver = string.sub(money, moneyToWithdraw-3, moneyToWithdraw-2)
+					copper = string.sub(money, moneyToWithdraw-1, moneyToWithdraw-0)
+					
+					GuildBankFrame.WithdrawButton:Click("LeftButton")
+					if (StaticPopup1:IsVisible()) then
+						C_Timer.After(0.5, function()
+							StaticPopup1MoneyInputFrameGold:SetText(gold)
+							StaticPopup1MoneyInputFrameSilver:SetText(silver)
+							StaticPopup1MoneyInputFrameCopper:SetText(copper)
+							StaticPopup1Button1:Click()
+							print("Money withdrawn: " .. GetCoinTextureString(money))
 						end)
 					end
 				end
